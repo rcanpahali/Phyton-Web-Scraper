@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 #print(token)
 #print(headers)
-##r = requests.post(url = url, params = PARAMS)
+#r = requests.post(url = url, params = PARAMS)
 
 proxies = { 
   "http"  : "http://10.10.1.10:3128", 
@@ -79,8 +79,7 @@ with requests.Session() as session:
 
     #CAPTCHA Page
     voteRequest = session.post(voteSubmitUrl, headers=voteHeader, data=voteFormData)
-    
-  
+      
     #Collect Points Page    
     redeemHeader = {
         "Origin":"https://mt2classic.com",
@@ -96,9 +95,8 @@ with requests.Session() as session:
         "upgrade-insecure-requests": "1"
   }
         
-    r = session.get(redeemUrl, headers = redeemHeader)
-    redeemPage = BeautifulSoup(r.content, 'html5lib')  
-    
+    r = session.get(redeemUrl, headers = redeemHeader)    
+    redeemPage = BeautifulSoup(r.content, 'html5lib')      
     redeemPageResult = redeemPage.find('div', attrs = {'class':'p-2 mt-4 bg-fog-gradient rounded-lg max-w-sm mx-auto'})
     print(redeemPageResult.prettify())
 
